@@ -6,6 +6,7 @@ const pendingTimers = [];
 const pendingOSTasks = [];
 const pendingOperations = [];
 
+// New timers, tasks, operations are recorded from myFile running.
 myFile.runContents();
 
 function shouldContinue() {
