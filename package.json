@@ -1,0 +1,22 @@
+{
+  "name": "nodejs_advanced_concepts",
+  "version": "1.0.0",
+  "description": "small sample express app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeWhoShallNotBeMentioned/Node.js_Advanced_Concepts.git"
+  },
+  "author": "Chris Underwood",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HeWhoShallNotBeMentioned/Node.js_Advanced_Concepts/issues"
+  },
+  "homepage": "https://github.com/HeWhoShallNotBeMentioned/Node.js_Advanced_Concepts#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
