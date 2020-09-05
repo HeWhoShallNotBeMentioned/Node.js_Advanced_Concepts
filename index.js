@@ -1,10 +1,18 @@
 process.env.UV_THREADPOOL_SIZE = 1;
 const cluster = require('cluster');
 
+// From testing we have learned that limiting the # of children i.e.
+// cluster.fork() should be limited to the number of physical CPU
+// cores. Particularly for data processing intensive appliations. For
+// non-data processig intensive apps, soft cores can be used.
+
+// User Apache Bench for testing.  ex: ab -c 6 -n 6 localhost:4500/
+
 // Is the file being executes in master mode?
 if (cluster.isMaster) {
   console.log('cluster.isMaster ----  ', cluster.isMaster);
   // Cause index.js to be executed *again* but in child mode
+  cluster.fork();
   cluster.fork();
 } else {
   // I'm a child, I'm going to act like va server and do nothing else
