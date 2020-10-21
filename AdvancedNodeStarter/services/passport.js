@@ -18,10 +18,10 @@ passport.deserializeUser((id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      callbackURL: '/auth/google/callback',
+      callbackURL: 'http://localhost:3000/auth/google/callback',
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      proxy: true
+      proxy: true,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -31,7 +31,7 @@ passport.use(
         }
         const user = await new User({
           googleId: profile.id,
-          displayName: profile.displayName
+          displayName: profile.displayName,
         }).save();
         done(null, user);
       } catch (err) {
