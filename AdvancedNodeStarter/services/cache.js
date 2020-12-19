@@ -10,7 +10,7 @@ const exec = mongoose.Query.prototype.exec;
 mongoose.Query.prototype.cache = function (options = {}) {
   this.useCache = true;
 
-  this.haskKey = JSON.stringify(options.key || '');
+  this.hashKey = JSON.stringify(options.key || '');
   console.log('options.key -- ', options.key);
   return this;
 };
@@ -33,15 +33,21 @@ mongoose.Query.prototype.exec = async function () {
   // If we do, return that
   if (cacheValue) {
     const doc = JSON.parse(cacheValue);
-    console.log('doc -- ', doc);
+    console.log('doc -- ', 'setting cache');
     return Array.isArray(doc) ? doc.map(d => this.model(d)) : this.model(doc);
   }
 
   // Otherwise, issue the query and store the result in redis.
 
   const result = await exec.apply(this, arguments);
-  console.log('result -- ', result);
+  //console.log('result -- ', result);
+  console.log('result---', result.validate);
   client.hset(this.hashKey, key, JSON.stringify(result), 'EX', 10);
   return result;
-  // console.log('result---', result.validate);
+};
+
+module.exports = {
+  clearHash(hashKey) {
+    client.del(JSON.stringify(hashKey));
+  },
 };
