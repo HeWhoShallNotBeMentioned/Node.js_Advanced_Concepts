@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+dotenv.config();
+console.table(dotenv.config());
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
@@ -40,7 +43,7 @@ if (['production'].includes(process.env.NODE_ENV)) {
   });
 }
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
   console.log(`Listening on port`, PORT);
 });
