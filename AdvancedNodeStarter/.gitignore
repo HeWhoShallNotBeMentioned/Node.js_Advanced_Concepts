@@ -3,6 +3,8 @@ nohup.out
 .DS_Store
 dump.rdp
 .env
+dev.js
+
 
 "proxy": {
     "/auth/*": {
