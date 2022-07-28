@@ -11,4 +11,5 @@ test('We can launch a browser', async () => {
     args: ['--no-sandbox'],
   });
   const page = await browser.newPage();
+  await page.goto('localhost:3000');
 });
