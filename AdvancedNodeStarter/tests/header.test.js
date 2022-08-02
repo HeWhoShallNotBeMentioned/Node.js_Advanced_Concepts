@@ -10,7 +10,7 @@ beforeEach(async () => {
   await page.goto('localhost:3000');
 });
 afterEach(async () => {
-  await browser.close();
+  //await browser.close();
 });
 
 test('Confirm the header has the correct text.', async () => {
@@ -25,7 +25,7 @@ test('clicking login starts oAuth flow', async () => {
   expect(url).toMatch(/accounts.google.com/);
 });
 
-test('When signed in, shows log out button.', async () => {
+test.only('When signed in, shows log out button.', async () => {
   const id = '62e4754ac4a23baf01c20c97';
 
   const Buffer = require('safe-buffer').Buffer;
@@ -39,5 +39,7 @@ test('When signed in, shows log out button.', async () => {
   const keygrip = new Keygrip([keys.cookieKey]);
   const sig = keygrip.sign('session=' + sessionString);
 
-  console.log('---------------------', sessionString, sig);
+  await page.setCookie({ name: 'session', value: sessionString });
+  await page.setCookie({ name: 'session.sig', value: sig });
+  await page.goto('localhost:3000');
 });
