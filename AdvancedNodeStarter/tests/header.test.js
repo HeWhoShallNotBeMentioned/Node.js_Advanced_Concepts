@@ -1,4 +1,6 @@
 const puppeteer = require('puppeteer');
+const sessionFactory = require('./factories/sessionFactory');
+
 let browser;
 let page;
 beforeEach(async () => {
@@ -26,9 +28,9 @@ test('clicking login starts oAuth flow', async () => {
 });
 
 test('When signed in, shows log out button.', async () => {
-  const id = '62e4754ac4a23baf01c20c97';
+  const { session, sig } = await sessionFactory();
 
-  await page.setCookie({ name: 'session', value: sessionString });
+  await page.setCookie({ name: 'session', value: session });
   await page.setCookie({ name: 'session.sig', value: sig });
   await page.goto('localhost:3000');
 
