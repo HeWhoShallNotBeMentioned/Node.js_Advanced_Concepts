@@ -6,7 +6,7 @@
   "jest": {
     "verbose": true,
     "testURL": "http://localhost:3000/",
-    "setupTestFrameworkScriptFile": "./tests.setup.js"
+    "setupFilesAfterEnv": "./jest.config.js"
 },
 
 
@@ -17,7 +17,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "heroku-postbuild": "npm run build",
-    "test":"jest --testTimeout=30000"
+    "test":"jest --setTimeout=30000  --detectOpenHandles --forceExit"
   },
   "author": "",
   "license": "ISC",
