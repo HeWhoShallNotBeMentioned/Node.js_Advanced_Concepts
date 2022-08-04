@@ -5,8 +5,11 @@
   "main": "index.js",
   "jest": {
     "verbose": true,
-    "testURL": "http://localhost:3000/"
+    "testURL": "http://localhost:3000/",
+    "setupTestFrameworkScriptFile": "./tests.setup.js"
 },
+
+
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js --ignore tests",
